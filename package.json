@@ -28,10 +28,10 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@retailmenot/core-ui-eslintrc": "^4.0.1",
-    "eslint": "^2.11.1",
+    "@retailmenot/core-ui-eslintrc": "^5.0.0",
+    "eslint": "^3.8.1",
     "mock-fs": "^3.6.0",
-    "tap": "^5.0.0"
+    "tap": "^8.0.0"
   },
   "dependencies": {
     "@retailmenot/core-ui-editorconfig": "^1.0.2",
@@ -40,6 +40,6 @@
     "bluebird": "^3.1.1",
     "debug": "^2.2.0",
     "handlebars": "^4.0.5",
-    "lodash": "^3.10.1"
+    "lodash": "^4.16.4"
   }
 }
