@@ -58,7 +58,7 @@ tap.test('getPartialDependencies', function (t) {
 				],
 				function (arg) {
 					t.throws(function () {
-						resolve('', arg);
+						getPartialDependencies('', arg);
 					}, 'must be an object, not ' + arg);
 				});
 
