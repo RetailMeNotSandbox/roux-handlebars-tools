@@ -844,8 +844,9 @@ tap.test('registerPartial', (t) => {
 	t.test('registers partials', (t) => {
 		t.autoend();
 
-		t.afterEach(() => {
+		t.afterEach((done) => {
 			mockfs.restore();
+			done();
 		});
 
 		t.test('with no dependencies', (t) => {
@@ -1046,8 +1047,9 @@ tap.test('registerPantry', (t) => {
 	t.test('registers ingredients', (t) => {
 		t.autoend();
 
-		t.afterEach(() => {
+		t.afterEach((done) => {
 			mockfs.restore();
+			done();
 		});
 
 		t.test('in the pantry when registerOptions are specified', (t) => {
