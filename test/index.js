@@ -58,7 +58,7 @@ tap.test('getPartialDependencies', function (t) {
 				],
 				function (arg) {
 					t.throws(function () {
-						resolve('', arg);
+						getPartialDependencies('', arg);
 					}, 'must be an object, not ' + arg);
 				});
 
@@ -105,15 +105,15 @@ tap.test('getPartialDependencies', function (t) {
 					return getPartialDependencies(template, {
 						extensions: ['hbs', 'template']
 					})
-					.then(function (map) {
-						t.same(map, {
-							'a/partial': path.resolve('a/partial.hbs'),
-							'one/more/partial': path.resolve('one/more/partial.template')
+						.then(function (map) {
+							t.same(map, {
+								'a/partial': path.resolve('a/partial.hbs'),
+								'one/more/partial': path.resolve('one/more/partial.template')
+							});
+						})
+						.finally(function () {
+							mockfs.restore();
 						});
-					})
-					.finally(function () {
-						mockfs.restore();
-					});
 				});
 
 				t.test('defaults to ["hbs", "handlebars"]', function (t) {
@@ -204,9 +204,9 @@ tap.test('getPartialDependencies', function (t) {
 					return getPartialDependencies(template, {
 						partials: partials
 					})
-					.then(function () {
-						t.same(partials, partialsClone);
-					});
+						.then(function () {
+							t.same(partials, partialsClone);
+						});
 				});
 
 				t.test('members are processed if depended on by passed template',
@@ -263,9 +263,9 @@ tap.test('getPartialDependencies', function (t) {
 								'./partials/one': './partials/one'
 							}
 						})
-						.then(function (map) {
-							t.same(map, {});
-						});
+							.then(function (map) {
+								t.same(map, {});
+							});
 					});
 			});
 
@@ -844,8 +844,9 @@ tap.test('registerPartial', (t) => {
 	t.test('registers partials', (t) => {
 		t.autoend();
 
-		t.afterEach(() => {
+		t.afterEach((done) => {
 			mockfs.restore();
+			done();
 		});
 
 		t.test('with no dependencies', (t) => {
@@ -903,14 +904,14 @@ tap.test('registerPartial', (t) => {
 				return registerPartial('hello', 'hello, {{> name}}', hbCtx, {
 					registerTransitiveDependencies: false
 				})
-				.then(obj => {
-					t.strictSame(obj.name, 'hello');
-					t.type(hbCtx.partials.hello, 'function');
-					t.notOk(hbCtx.partials.name);
-					t.notOk(hbCtx.partials['stuff/artist']);
-					t.throws(() => obj.template());
-					t.end();
-				});
+					.then(obj => {
+						t.strictSame(obj.name, 'hello');
+						t.type(hbCtx.partials.hello, 'function');
+						t.notOk(hbCtx.partials.name);
+						t.notOk(hbCtx.partials['stuff/artist']);
+						t.throws(() => obj.template());
+						t.end();
+					});
 			}
 		);
 
@@ -928,14 +929,14 @@ tap.test('registerPartial', (t) => {
 					pantrySearchPaths: [path.join(process.cwd(), 'pantry')]
 				}
 			})
-			.then(obj => {
-				t.strictSame(obj.name, 'hello');
-				t.type(hbCtx.partials.hello, 'function');
-				t.type(hbCtx.partials['artist/info'], 'function');
-				t.type(hbCtx.partials['artist/name'], 'function');
-				t.strictSame(obj.template({artist: 'me'}), 'hello, it\'s me');
-				t.end();
-			});
+				.then(obj => {
+					t.strictSame(obj.name, 'hello');
+					t.type(hbCtx.partials.hello, 'function');
+					t.type(hbCtx.partials['artist/info'], 'function');
+					t.type(hbCtx.partials['artist/name'], 'function');
+					t.strictSame(obj.template({artist: 'me'}), 'hello, it\'s me');
+					t.end();
+				});
 		});
 
 		t.test('but only registers each partial once', (t) => {
@@ -1046,8 +1047,9 @@ tap.test('registerPantry', (t) => {
 	t.test('registers ingredients', (t) => {
 		t.autoend();
 
-		t.afterEach(() => {
+		t.afterEach((done) => {
 			mockfs.restore();
+			done();
 		});
 
 		t.test('in the pantry when registerOptions are specified', (t) => {
