@@ -31,13 +31,13 @@
   "devDependencies": {
     "@retailmenot/core-ui-editorconfig": "^1.0.2",
     "@retailmenot/core-ui-eslintrc": "^7.0.0",
-    "@retailmenot/core-ui-gitignore": "^1.0.1",
+    "@retailmenot/core-ui-gitignore": "^1.0.2",
     "eslint": "^5.0.0",
     "mock-fs": "^4.8.0",
     "tap": "^13.0.3"
   },
   "dependencies": {
-    "@retailmenot/roux": "^1.0.1",
+    "@retailmenot/roux": "^2.0.0",
     "bluebird": "^3.5.1",
     "debug": "^4.0.1",
     "handlebars": "^4.0.11",
