@@ -13,7 +13,7 @@
     "url": "https://github.com/RetailMeNotSandbox/roux-handlebars-tools.git"
   },
   "engines": {
-    "node": ">= 4"
+    "node": ">=8"
   },
   "keywords": [
     "roux",
@@ -24,7 +24,8 @@
     "Eric Capps <ecapps@rmn.com>",
     "Lon Ingram <lingram@rmn.com>",
     "Kyle Smith <kbsmith@rmn.com>",
-    "Luke Zilioli <lzilioli@rmn.com>"
+    "Luke Zilioli <lzilioli@rmn.com>",
+    "Ray Pierce <ray@digitalpierce.com>"
   ],
   "license": "MIT",
   "devDependencies": {
